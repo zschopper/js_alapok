@@ -43,20 +43,33 @@ function paros_db() {
     }
 }
 
-function harommal_oszthatok() {
+function van_egyes() {
     if (tomb_ellenorzes()) {
         let harommal = 0;
-        for (let elem in veletlentomb) {
-            if (veletlentomb[elem] % 3 == 0)
-                harommal++;
+        let i = 0;
+        while (i < veletlentomb.length && veletlentomb[i] != 1) {
+            i++;
         }
-        if (harommal > 0) {
-            szoveg_kiir(`${harommal} db hárommal oszthatók szám van a tömbben.`)
+        if (i < veletlentomb.length) {
+            szoveg_kiir("Van 1-es szám a tömbben.");
         } else {
-            szoveg_kiir("Nincs benne hárommal oszthatók szám.");
+            szoveg_kiir("Nincs 1-es szám a tömbben.");
         }
     }
 }
+
+function legnagyobb_szam() {
+    if (tomb_ellenorzes()) {
+        let idx = 0;
+        for (var i = 0; i < veletlentomb.length; i++) {
+            if (veletlentomb[idx] < veletlentomb[i]) {
+                idx = i
+            }
+        }
+        szoveg_kiir(`A legnagyobb szám: ${veletlentomb[idx]}.`)
+    }
+}
+
 
 function tomb_ellenorzes() {
     if (!veletlentomb.length) {
